@@ -14,37 +14,31 @@ except AttributeError:
 
 
 class DBOutage(TemplateView):
-    template_name = 'db_outage.html'
-
-    def get(self, *args, **kwargs):
-        objects = ShutDown.objects.all()
-        if objects.count() != 1:
-            return redirect(settings.DB_OUTAGE_DEFAULT_REDIRECT)
-
-        return super(DBOutage, self).get(*args, **kwargs)
+    template_name = 'db_outage/db_outage.html'
 
     def get_context_data(self, **kwargs):
         ctx = super(DBOutage, self).get_context_data(**kwargs)
-        objects = ShutDown.objects.all()
-        msg = objects[0].message
-        ctx.update({'msg':msg, 'title':'Service Outage'})
+        msg = 'The system is down temporarily. The developers have been notified.'
+        ctx.update({'msg':msg})
         try:
             new_context = context(self.request, ctx)
         except UTDirectTemplateAPIError:
             try:
-                new_context = context(
-                    self.request,
-                    dict=ctx,
-                    api_key=settings.API_KEY,
-                    page_title='Service Outage',
-                    window_title='Service Outage',
-                )
+                api_key = settings.API_KEY
             except AttributeError:
                 raise ImproperlyConfigured(
                     'If you do not supply your own context object by setting '
-                    'an DB_OUTAGE_CONTEXT in settings.py, then you must supply an '
-                    'API_KEY in your settings, which will be used to call the '
-                    'default UTDirecrContext.'
+                    'a DB_OUTAGE_CONTEXT in settings.py, then you must supply '
+                    'an API_KEY in your settings, which will be used to call '
+                    'the default UTDirecrContext.'
                 )
+
+            new_context = context(
+                self.request,
+                dict=ctx,
+                api_key=api_key,
+                page_title='Service Outage',
+                window_title='Service Outage',
+            )
 
         return new_context
