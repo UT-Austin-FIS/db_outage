@@ -24,7 +24,7 @@ class DBOutageMiddleware(object):
             return None
 
         if (request.path == reverse('db_outage') or
-            u'static' in request.path.split('/')
+            settings.STATIC_URL in request.path
             ):
             return None
 
