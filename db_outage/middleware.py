@@ -1,6 +1,7 @@
 import sys
 
 import cx_Oracle
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 
@@ -27,7 +28,7 @@ class DBOutageMiddleware(object):
             return None
 
         try:
-            query_dual_table()
+            ping_db()
         except (cx_Oracle.DatabseError, TimeoutError):
             #TODO: notify devs
             return redirect('db_outage')
@@ -35,6 +36,21 @@ class DBOutageMiddleware(object):
         return None
 
     @timeout(15)
-    def query_dual_table():
-        #TODO: query dual table here
-        pass
+    def ping_db():
+#        ip, port, SID = parse_tnsnames()
+#        dns_tns = cx_Oracle.makedsn(ip, port, SID)
+#        db = cx_Oracle.connect(username, password, dns_tns)
+#        db = cx_Oracle.connect(
+#            settings.DATABASES['default']['USER'],
+#            settings.DATABASES['default']['PASSWORD'],
+#            dns_tns,
+#            )
+        user = settings.DATABASES['default']['USER'],
+        pwd = settings.DATABASES['default']['PASSWORD'],
+        db = cx_Oracle.connect(user + '/' + pwd + '@default')
+        db.ping()
+        db.close()
+        return None
+
+    #def parse_tnsnames():
+
