@@ -24,12 +24,12 @@ Setup
       )
 ```
 
-2. Add the db_outage middleware to your MIDDLEWARE_CLASSES setting like this::
+2. Add the db_outage middleware to your MIDDLEWARE_CLASSES in settings. It needs to be near the top, if not the very top of your middleware stack::
 
 ```python
       MIDDLEWARE_CLASSES= (
-          ...
           'db_outage.middleware.DBOutageMiddleware',
+          ...
       )
 ```
 
