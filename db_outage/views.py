@@ -30,7 +30,7 @@ class DBOutage(TemplateView):
                     'If you do not supply your own context object by setting '
                     'a DB_OUTAGE_CONTEXT in settings.py, then you must supply '
                     'an API_KEY in your settings, which will be used to call '
-                    'the default UTDirecrContext.'
+                    'the default UTDirectContext.'
                 )
 
             new_context = context(
