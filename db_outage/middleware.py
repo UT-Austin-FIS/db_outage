@@ -6,8 +6,6 @@ from django.core.urlresolvers import reverse
 from django.db import connection
 from django.shortcuts import redirect
 
-from timeout import timeout, TimeoutError
-
 _using_manage = True in ['manage.py' in arg for arg in sys.argv]
 
 TESTING = ((_using_manage and 'test' in sys.argv) or ('nosetests' in sys.argv))
@@ -30,13 +28,12 @@ class DBOutageMiddleware(object):
 
         try:
             self.ping_db()
-        except (cx_Oracle.DatabaseError, TimeoutError) as exc:
+        except (cx_Oracle.DatabaseError) as exc:
             #TODO: notify devs
             return redirect('db_outage')
 
         return None
 
-    #@timeout(15)
     def ping_db(self):
         cursor = connection.cursor()
         cursor.execute("SELECT 1 FROM DUAL")
