@@ -18,7 +18,8 @@ class DBOutage(TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(DBOutage, self).get_context_data(**kwargs)
-        msg = 'The system is down temporarily. The developers have been notified.'
+        msg = ('The Request Form System is currently unavailable. IT is working'
+                ' to restore service.')
         ctx.update({'msg':msg})
         try:
             new_context = context(self.request, ctx)
