@@ -2,9 +2,13 @@ import sys
 
 import cx_Oracle
 from django.conf import settings
-from django.core.urlresolvers import reverse
+from django.core.mail import mail_admins
+import logging
+
 from django.db import connection
-from django.shortcuts import redirect
+from db_outage.views import DBOutage
+
+logger = logging.getLogger('django')
 
 _using_manage = True in ['manage.py' in arg for arg in sys.argv]
 
@@ -21,16 +25,17 @@ class DBOutageMiddleware(object):
         if TESTING and 'db_outage' not in sys.argv:
             return None
 
-        if (request.path == reverse('db_outage') or
-            settings.STATIC_URL in request.path
-            ):
+        if settings.STATIC_URL in request.path:
             return None
 
         try:
             self.ping_db()
         except (cx_Oracle.DatabaseError) as exc:
-            #TODO: notify devs
-            return redirect('db_outage')
+            msg = ('Your application is having trouble connecting to the '
+                    'database. Please investigate.')
+            mail_admins('DatabaseError',msg)
+            logger.error(exc)
+            return DBOutage.as_view()(request)
 
         return None
 
