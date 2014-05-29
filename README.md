@@ -10,7 +10,7 @@ To include this app in your PyPE project, simply pull it into your project via s
 
 > path: extra/db_outage
 
-> URL: https://github.com/UT-Austin-FIS/db_outage/tags/1.0/db_outage
+> URL: https://github.com/UT-Austin-FIS/db_outage/tags/v1.0/db_outage
 
 Setup
 ------
