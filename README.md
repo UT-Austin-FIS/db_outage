@@ -10,7 +10,7 @@ To include this app in your PyPE project, simply pull it into your project via s
 
 > path: extra/db_outage
 
-> URL: https://github.com/UT-Austin-FIS/outage/tags/1.2/outage
+> URL: https://github.com/UT-Austin-FIS/db_outage/tags/1.0/db_outage
 
 Setup
 ------
@@ -33,22 +33,18 @@ Setup
       )
 ```
 
-3. Add DB_OUTAGE_CONTEXT object to your settings.py. This should be a class that carries the core of your page context logic. If not supplied, the UTDirectContext will be used, but you will need to supply the api key in your settings (eg: API_KEY = 'your_api_key')::
+3. Add DB_OUTAGE_CONTEXT to your settings.py. This should be a path to a class that carries the core of your page context logic. It will likely be a subclass of the django RequestContext object.::
 _IMPORTANT:_ The context object you supply MUST NOT require oracle database access.
 
 ```python
-   DB_OUTAGE_CONTEXT = 'path.to.your.desired.context.object'
+   DB_OUTAGE_CONTEXT = 'path.to.your.desired.ContextObject'
 ```
 
-4. Add an DB_OUTAGE_DEFAULT_REDIRECT to your settings.py. This should be the name of a url pattern which will be used to redirect any users attempting to access the db_outage url directly when there is no outage occuring.::
+4. Add DB_OUTAGE_MESSAGE to your settings.py. This is a custom message that will be displayed when a database outage occurs.::
 
 ```python
-   DB_OUTAGE_DEFAULT_REDIRECT = 'url_name' # e.g.: 'home'
+   DB_OUTAGE_MESSAGE =(
+      'The <your application name> system is currently unavailable. We are working '
+      'to restore service'
+   )
 ```
-
-5. Include the db_outage URLconf in your project urls.py like this::
-
-```python
-    url(r'^apps/services/requests/', include(db_outage.urls)),
-```
-
