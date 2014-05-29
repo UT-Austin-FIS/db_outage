@@ -1,7 +1,7 @@
 DB Outage:
 =====
 
-This application will detect a database outage, and will handle it gracefully by rendering a default error page using the UTDirect context.
+This application will detect a database outage, and will handle it gracefully by rendering a default error page.
 
 Usage
 =====
