@@ -60,4 +60,6 @@ Setup
 Releases
 ========
 
-* v1.0 (2014/05/29): initial release; targets Python 2.6, Django 1.4
+* v1.0 (2014/05/29): initial release with support for at least:
+ * Python 2.6 - 2.7
+ * Django 1.4 - 1.7
