@@ -21,8 +21,9 @@ Setup
 
       ```python
             INSTALLED_APPS = (
-                ...
+                # ...
                 'db_outage',
+                # ...
             )
       ```
 
@@ -30,9 +31,9 @@ Setup
    needs to be near the top, if not the very top of your middleware stack:
 
       ```python
-            MIDDLEWARE_CLASSES= (
+            MIDDLEWARE_CLASSES = (
                 'db_outage.middleware.DBOutageMiddleware',
-                ...
+                # ...
             )
       ```
 
@@ -50,7 +51,7 @@ Setup
    be displayed when a database outage occurs:
 
       ```python
-      DB_OUTAGE_MESSAGE =(
+      DB_OUTAGE_MESSAGE = (
           'The <your application name> system is currently unavailable. '
           'We are working to restore service.'
       )
