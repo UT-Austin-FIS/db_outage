@@ -1,8 +1,8 @@
 DB Outage:
 ==========
 
-This application will detect a database outage, and will handle it gracefully
-by rendering a default error page.
+This application will detect an Oracle database outage, and will handle it
+gracefully by rendering a default error page.
 
 Usage
 =====

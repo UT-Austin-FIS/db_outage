@@ -1,11 +1,12 @@
+import logging
 import sys
 
-import cx_Oracle
 from django.conf import settings
 from django.core.mail import mail_admins
-import logging
-
 from django.db import connection
+
+import cx_Oracle
+
 from db_outage.views import DBOutage
 
 logger = logging.getLogger('django')
@@ -33,7 +34,7 @@ class DBOutageMiddleware(object):
         except (cx_Oracle.DatabaseError) as exc:
             msg = ('Your application is having trouble connecting to the '
                     'database. Please investigate.')
-            mail_admins('DatabaseError',msg)
+            mail_admins('DatabaseError', msg)
             logger.error(exc)
             return DBOutage.as_view()(request)
 
