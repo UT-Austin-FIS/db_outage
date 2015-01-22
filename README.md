@@ -60,8 +60,9 @@ Setup
 Releases
 ========
 
-* (master): changes since v1.0...
- * Adding support for Django 1.7
-* v1.0 (2014/05/29): initial release with support for at least:
- * Python 2.6 - 2.7
- * Django 1.4
+* v1.1 (2015/01/22)
+  * Adding support for Django 1.7
+* v1.0 (2014/05/29)
+  * initial release with support for at least:
+    * Python 2.6 - 2.7
+    * Django 1.4
