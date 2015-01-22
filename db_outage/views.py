@@ -12,6 +12,7 @@ except AttributeError:
         'DB_OUTAGE_CONTEXT in your settings.py file.'
     )
 
+
 class DBOutage(TemplateView):
     template_name = 'db_outage/db_outage.html'
 
@@ -32,4 +33,4 @@ class DBOutage(TemplateView):
             title='Service Outage',
             page_title='Service Outage',
             window_title='Service Outage',
-            )
+        )
