@@ -4,7 +4,9 @@ import sys
 from django.conf import settings
 from django.core.mail import mail_admins
 from django.db import connection
-from django.db.utils import DatabaseError
+from django.db.utils import DatabaseError as django_DatabaseError
+
+import cx_Oracle
 
 from db_outage.views import DBOutage
 
@@ -30,7 +32,7 @@ class DBOutageMiddleware(object):
 
         try:
             self.ping_db()
-        except DatabaseError as exc:
+        except (django_DatabaseError, cx_Oracle.DatabaseError) as exc:
             msg = (
                 'Your application is having trouble connecting to the '
                 'database. Please investigate.'
