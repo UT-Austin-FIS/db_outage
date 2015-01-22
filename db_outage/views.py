@@ -3,7 +3,7 @@ from django.core.exceptions import ImproperlyConfigured
 from django.views.generic.base import TemplateView
 
 try:
-    module_path, ctx_class = settings.DB_OUTAGE_CONTEXT.rsplit('.',1)
+    module_path, ctx_class = settings.DB_OUTAGE_CONTEXT.rsplit('.', 1)
     module = __import__(module_path, fromlist=[ctx_class])
     context = getattr(module, ctx_class)
 except AttributeError:
@@ -26,7 +26,7 @@ class DBOutage(TemplateView):
                 'We are experiencing technical difficulties. Our IT staff has '
                 'been notified.'
             )
-        ctx.update({'msg':msg})
+        ctx.update({'msg': msg})
         return context(
             self.request,
             ctx,
