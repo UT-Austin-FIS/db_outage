@@ -61,7 +61,7 @@ Releases
 ========
 
 * (master): changes since v1.0...
- * requires Django 1.7+ (no `models.py`)
+ * requires Django 1.7+ (no `models.py`; class hierarchy of DatabaseError)
 * v1.0 (2014/05/29): initial release with support for at least:
  * Python 2.6 - 2.7
  * Django 1.4 - 1.7
