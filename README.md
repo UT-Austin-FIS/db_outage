@@ -12,7 +12,7 @@ To include this app in your PyPE project, simply pull it into your project via
 
 > path: extra/db_outage
 
-> URL: https://github.com/UT-Austin-FIS/db_outage/tags/v1.0/db_outage
+> URL: https://github.com/UT-Austin-FIS/db_outage/tags/v1.1.1/db_outage
 
 Setup
 -----
@@ -60,6 +60,8 @@ Setup
 Releases
 ========
 
+* v1.1.1 (2015/02/05)
+  * Adding version info
 * v1.1 (2015/01/22)
   * Adding support for Django 1.7
 * v1.0 (2014/05/29)
