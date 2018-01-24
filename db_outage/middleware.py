@@ -5,6 +5,7 @@ from django.conf import settings
 from django.core.mail import mail_admins
 from django.db import connection
 from django.db.utils import DatabaseError as django_DatabaseError
+from django.utils.deprecation import MiddlewareMixin
 
 import cx_Oracle
 
@@ -17,7 +18,7 @@ _using_manage = True in ['manage.py' in arg for arg in sys.argv]
 TESTING = ((_using_manage and 'test' in sys.argv) or ('nosetests' in sys.argv))
 
 
-class DBOutageMiddleware(object):
+class DBOutageMiddleware(MiddlewareMixin):
 
     def process_request(self, request):
 
