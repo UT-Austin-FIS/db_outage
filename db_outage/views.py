@@ -33,4 +33,5 @@ class DBOutage(TemplateView):
             title='Service Outage',
             page_title='Service Outage',
             window_title='Service Outage',
-        )
+        ).flatten()
+
