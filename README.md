@@ -60,6 +60,8 @@ Setup
 Releases
 ========
 
+* v1.1.2 (2018/02/20)
+  * Adding support for Django 1.11
 * v1.1.1 (2015/02/05)
   * Adding version info
 * v1.1 (2015/01/22)
